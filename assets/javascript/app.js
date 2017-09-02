@@ -10,7 +10,7 @@ function showGiph() {
         url: queryURL,
         method: "GET"
     }).done(function(response){
-        console.log('seventh', response);
+        console.log(response);
     })
 
 
