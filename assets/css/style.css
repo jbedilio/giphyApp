@@ -1,4 +1,4 @@
-/* prevents the buttons from touching the very top of the viewport*/
+/* prevents the buttons from touching one another and the edges of the viewport*/
 #title {
     margin-top: 5px;
 }
