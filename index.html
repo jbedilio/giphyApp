@@ -11,20 +11,20 @@
     <title>Giphy App</title>
 </head>
 <body>
-    <div class="container text-center">
-
-        <h1>GIPH Search</h1>
+    <div class="container">
 
         <div class="row">
-            <!-- giphs go here-->
-            <div class="col-lg-12 text-center" id="giph-view"></div>
+            <!-- giphs populate here-->
+            <div class="col-md-8 text-left" id="giph-view"></div>
 
-            <form id="giph-form">
+            <form class="col-md-4 text-right" id="giph-form">
+                <h1 class="text-right" id="title">GIPH Search</h1>
                 <label for="giph-input">Add A Giph!</label>
+                <!-- giph category text box area--> 
                 <input type="text" id="giph-input">
                 <br>
-
-                <input id="add-giph" type="button" value="Add A Giph">
+                <!-- add a giph button -->
+                <input class="text-right" id="add-giph" type="submit" value="Add A Giph">
             </form>
 
 
