@@ -7,20 +7,29 @@ function playGiph() {
     var giph = $(this).attr('data-name')
     //var holding the incomplete url for the ajax request, waiting on the giph var to concatenate and complete the url
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giph + "&api_key=1e1310e23de94135a921363415524870&limit=10";
-    //actual ajax function requesting data from the API with the "GET" method
+    //ajax function requesting data with the "GET" method
     $.ajax({
         url: queryURL,
         method: "GET"
-    //.done function instructing the computer to use the response info from the API to carry out the following actions
+    //.done function instructing the computer how to use the response (with limit 10 giphs) from the ajax request: 
     }).done(function(response){
         console.log(response);
-        
+        //the for loop to loop through the response (limit 10)
         for(var i = 0; i < response.data.length; i++) {
-            var viewDiv = $('<div class="giph">');
+            //setting a var viewDiv to hold the dynamically created divs all w/ the same class="giph"
+            var viewDiv = $('<div class="giph"><br><br><br>');
             console.log(viewDiv);
+            //setting the var giphImage to hold the dynamically created img elements (limit 10)
             var giphImage = $('<img>');
+            //giving the img elements the attribute src and setting it to a path that provides a smaller starting still image
             giphImage.attr('src', response.data[i].images.downsized_still.url);
             console.log(giphImage);
+            //prepending the giphImage var with the img elements to the viewDiv var (i.e. the dynamically created divs w/ class="giph")
+            viewDiv.prepend(giphImage);
+            console.log(viewDiv);
+            //prepending the viewDiv var containing the dynamic divs w/ class="giph" and the img elements to the html div w/ id="view"
+                    //this is where the img elements each inside it's own div will display on the page 
+            $('#view').prepend(viewDiv);
         } 
     })  
 
