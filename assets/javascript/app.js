@@ -1,8 +1,8 @@
 $(document).ready(function() {
 //starting array of giphs
 var giphs = [ "puppy"]; //"dog", "kitten", "cat", "hamster", "bird", "turtle", "rabbit", "horse", "goat"];
-
-function playGiph() {
+//function to generate the ajax request and utilize the the response (i.e. function that pulls the giphs)
+function pullGiphs() {
     //var that holds the button/element value clicked on and concatenates into the queryURL var completing the ajax request
     var giph = $(this).attr('data-name')
     //var holding the incomplete url for the ajax request, waiting on the giph var to concatenate and complete the url
@@ -20,9 +20,13 @@ function playGiph() {
             var viewDiv = $('<div class="giph"><br><br><br>');
             console.log(viewDiv);
             //setting the var giphImage to hold the dynamically created img elements (limit 10)
-            var giphImage = $('<img>');
+            var giphImage = $('<img class="gif">');
             //giving the img elements the attribute src and setting it to a path that provides a smaller starting still image
-            giphImage.attr('src', response.data[i].images.downsized_still.url);
+            giphImage.attr('src', response.data[i].images.downsized_still.url)
+            //adding the attributes data-still, data-animate, and data-state for toggling b/t paused and animated states of the img
+            .attr('data-still', response.data[i].images.downsized_still.url)
+            .attr('data-animate', response.data[i].images.downsized.url)
+            .attr('data-state', 'still');
             console.log(giphImage);
             //prepending the giphImage var with the img elements to the viewDiv var (i.e. the dynamically created divs w/ class="giph")
             viewDiv.prepend(giphImage);
@@ -30,13 +34,9 @@ function playGiph() {
             //prepending the viewDiv var containing the dynamic divs w/ class="giph" and the img elements to the html div w/ id="view"
                     //this is where the img elements each inside it's own div will display on the page 
             $('#view').prepend(viewDiv);
-        } 
-    })  
-
-
-
-
-}
+        }; 
+    });
+};
 
 //function to create giph buttons
 function makeButtons() {
@@ -73,14 +73,27 @@ $("#add-giph").on('click', function (event){
     console.log(giph);
     //this function adds the text from the text box input area to the giphs array
     giphs.push(giph);
-
+    //calling the makeButtons(); function, b/c it processes the buttons
     makeButtons();
-
 })
 
-$(document).on('click', '.giphs', playGiph);
-    console.log(playGiph);
+$(document).on('click', '.giphs', pullGiphs);
+    console.log(pullGiphs);
+
+$(document).on('click', '.gif', function(){
+    let $this = $(this);
+    state = $this.data('state');
+    console.log('state', $(this).data('state'));
+    if ('still' === state) {
+        console.log('animate that shiz');
+        $this.attr('src', $this.data('animate'));
+        $this.data('state', 'animate');
+    } else {
+        console.log('still that shiz');
+        $this.attr('src', $this.data('still'));
+        $this.data('state', 'still');
+    };
+});
 
 makeButtons();
-
 });
