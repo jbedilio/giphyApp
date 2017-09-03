@@ -1,6 +1,6 @@
 $(document).ready(function() {
 //starting array of giphs
-var giphs = [ "puppy"]; //"dog", "kitten", "cat", "hamster", "bird", "turtle", "rabbit", "horse", "goat"];
+var giphs = [ "puppy", "dog", "kitten", "cat", "hamster", "bird", "turtle", "rabbit", "horse", "goat"];
 //function to generate the ajax request and utilize the the response (i.e. function that pulls the giphs)
 function pullGiphs() {
     //var that holds the button/element value clicked on and concatenates into the queryURL var completing the ajax request
