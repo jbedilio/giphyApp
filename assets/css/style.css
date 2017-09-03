@@ -1,4 +1,19 @@
-/* prevents the buttons from touching one another and the edges of the viewport*/
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: url("../images/tvTestPatternImage.jpg") repeat-y center;
+    background-size: cover;
+}
+
+h1 {
+    color: floralwhite;
+    text-shadow: 4px -3px black;
+}
+
 #title {
     margin-top: 5px;
 }

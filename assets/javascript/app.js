@@ -73,27 +73,30 @@ $("#add-giph").on('click', function (event){
     console.log(giph);
     //this function adds the text from the text box input area to the giphs array
     giphs.push(giph);
-    //calling the makeButtons(); function, b/c it processes the buttons
+    //calling the makeButtons(); function, b/c it handles the processing of the buttons
     makeButtons();
 })
-
+//using the document on click event listener to pull the giphs onto the page when a giph button is clicked
 $(document).on('click', '.giphs', pullGiphs);
     console.log(pullGiphs);
-
+//using the document on click event listener to toggle the data-state of the giphs from still to animated
 $(document).on('click', '.gif', function(){
+    //setting the vars for the if else statement
     let $this = $(this);
     state = $this.data('state');
     console.log('state', $(this).data('state'));
+    //if statement creating the on click toggle from data state still to animate
     if ('still' === state) {
         console.log('animate that shiz');
         $this.attr('src', $this.data('animate'));
         $this.data('state', 'animate');
+    //else statement creating the on click toggle from data state animate to still
     } else {
         console.log('still that shiz');
         $this.attr('src', $this.data('still'));
         $this.data('state', 'still');
     };
 });
-
+//calling the makeButtons(); function again to handle the button processing
 makeButtons();
 });
