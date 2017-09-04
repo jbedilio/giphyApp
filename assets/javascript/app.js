@@ -73,6 +73,8 @@ $("#add-giph").on('click', function (event){
     console.log(giph);
     //this function adds the text from the text box input area to the giphs array
     giphs.push(giph);
+    //this line empties the text input box for the user automatically once the add button is clicked
+    $('#giph-input').val("");
     //calling the makeButtons(); function, b/c it handles the processing of the buttons
     makeButtons();
 })
