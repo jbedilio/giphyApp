@@ -21,3 +21,8 @@ h1 {
 #add-giph {
     margin: 0px 5px;
 }
+
+p {
+    color: #fff;
+    text-shadow: 2px -1px black;
+}

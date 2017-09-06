@@ -17,8 +17,12 @@ function pullGiphs() {
         //the for loop to loop through the response (limit 10)
         for(var i = 0; i < response.data.length; i++) {
             //setting a var viewDiv to hold the dynamically created divs all w/ the same class="giph"
-            var viewDiv = $('<div class="giph"><br><br><br>');
+            var viewDiv = $('<div class="giph">');
             console.log(viewDiv);
+            //setting the var rating to hold each object's value for rating 
+            var rating = response.data[i].rating;
+            //setting the var R to hold dynamically created paragraph elements with the object's rating concatenated into the content
+            var R = $('<p>').text('Rating: ' + rating);
             //setting the var giphImage to hold the dynamically created img elements (limit 10)
             var giphImage = $('<img class="gif">');
             //giving the img elements the attribute src and setting it to a path that provides a smaller starting still image
@@ -28,8 +32,9 @@ function pullGiphs() {
             .attr('data-animate', response.data[i].images.downsized.url)
             .attr('data-state', 'still');
             console.log(giphImage);
+
             //prepending the giphImage var with the img elements to the viewDiv var (i.e. the dynamically created divs w/ class="giph")
-            viewDiv.prepend(giphImage);
+            viewDiv.prepend(giphImage).append(R);
             console.log(viewDiv);
             //prepending the viewDiv var containing the dynamic divs w/ class="giph" and the img elements to the html div w/ id="view"
                     //this is where the img elements each inside it's own div will display on the page 
